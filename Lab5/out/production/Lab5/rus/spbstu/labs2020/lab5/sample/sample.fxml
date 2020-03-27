@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rus.spbstu.labs2020.lab5.sample.Controller">
+   <children>
+      <Button fx:id="b_show_all" layoutX="432.0" layoutY="216.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="90.0" text="Show all" />
+      <Button fx:id="b_add" layoutX="432.0" layoutY="70.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="90.0" text="Add" />
+      <TextField fx:id="f_product_name" layoutX="533.0" layoutY="70.0" promptText="Enter product name" />
+      <TextField fx:id="f_product_price" layoutX="533.0" layoutY="98.0" promptText="Enter product price" />
+      <ScrollPane layoutX="38.0" layoutY="82.0">
+         <content>
+            <TextFlow fx:id="output_panel" prefHeight="439.0" prefWidth="304.0" style="-fx-background-color: #000000;" />
+         </content>
+      </ScrollPane>
+      <Text layoutX="38.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Command line:" wrappingWidth="304.0" />
+      <Button fx:id="b_delete" layoutX="432.0" layoutY="142.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="90.0" text="Delete" />
+      <ChoiceBox fx:id="product_name_choice" layoutX="532.0" layoutY="170.0" prefWidth="150.0" />
+      <Text layoutX="532.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose a product:" wrappingWidth="124.79998779296875" />
+      <Button fx:id="b_price" layoutX="432.0" layoutY="290.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="90.0" text="Price of" />
+      <ChoiceBox fx:id="product_name_choice2" layoutX="532.0" layoutY="319.0" prefHeight="26.0" prefWidth="149.0" />
+      <Text layoutX="532.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose a product:" wrappingWidth="124.79998779296875" />
+      <Button fx:id="b_change_price" layoutX="432.0" layoutY="384.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="90.0" text="Change price" />
+      <ChoiceBox fx:id="product_name_choice3" layoutX="532.0" layoutY="395.0" prefWidth="150.0" />
+      <Text layoutX="532.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose a product:" wrappingWidth="124.79998779296875" />
+      <Button fx:id="b_filter" layoutX="432.0" layoutY="479.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="90.0" text="Filter by price" />
+      <TextField fx:id="f_from" layoutX="533.0" layoutY="479.0" promptText="From" />
+      <TextField fx:id="f_to" layoutX="533.0" layoutY="507.0" promptText="To" />
+      <TextField fx:id="f_new_price" layoutX="532.0" layoutY="431.0" promptText="Enter product price" />
+      <Button fx:id="b_exit" layoutX="734.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="51.0" text="Exit" />
+   </children>
+</AnchorPane>
