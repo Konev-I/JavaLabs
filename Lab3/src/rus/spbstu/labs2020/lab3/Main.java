@@ -30,7 +30,7 @@ public class Main {
             case 2:
               numOfLabs = 100;
           }
-          Student student = new Student(numOfLabs, subjectPool[rand.nextInt(3)]);
+          Student student = new Student(numOfLabs, subjectPool[rand.nextInt(3)], "Student"+i);
           try {
             queueOfStudents.put(student);
           }
@@ -61,18 +61,15 @@ public class Main {
             while (true) {
                 synchronized (mutex) {
                     if ((currentStudent != null) && (currentStudent.getSubjectName().equals(_name))) {
-                        System.out.println("Студент с " + currentStudent.getSubjectName() + " подошёл к " + Thread.currentThread().getName());
+                        System.out.println(currentStudent.getStudentName()+" с " + currentStudent.getSubjectName()
+                          + " сдаёт " + Thread.currentThread().getName()+" осталось "+currentStudent.getLabsCount()+" задач");
                         while (currentStudent.isLabsLeft())
                         {
+                            System.out.println("Осталось "+currentStudent.getLabsCount()+" задач");
                             currentStudent.work();
-                            try {
-                                Thread.sleep(100);
-                            }
-                            catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+                            mutex.notifyAll();
                         }
-                        System.out.println("Студент с " + currentStudent.getSubjectName() + " ушёл от " + Thread.currentThread().getName());
+                        System.out.println(currentStudent.getStudentName()+" с " + currentStudent.getSubjectName() + " ушёл от " + Thread.currentThread().getName());
                         currentStudent = null;
                         mutex.notify();
                     }
@@ -106,7 +103,7 @@ public class Main {
         catch (InterruptedException e) {
           e.printStackTrace();
         }
-        System.out.println("Студент с " + currentStudent.getSubjectName() + " зашел");
+        System.out.println(currentStudent.getStudentName()+" с " + currentStudent.getSubjectName() + " зашел");
         i++;
         try {
           mutex.notifyAll();
