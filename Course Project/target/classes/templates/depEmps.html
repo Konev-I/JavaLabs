@@ -25,7 +25,7 @@
     <input type="text" id="updateEmpId" placeholder="Введите новый ID сотрудника"/>
     <input type="button" value="Обновить информацию" onclick="updateById()">
 </div>
-<p>              Добавление нового сотрудника              </p>
+<p>              Добавление новую связь              </p>
 <div>
     <input type="text" id="addDepId" placeholder="Введите новый ID отдела"/>
     <input type="text" id="addEmpId" placeholder="Введите новый ID сотрудника"/>
@@ -50,6 +50,9 @@
         }
         if (document.getElementById("err").value === "-3") {
             alert("ID отделов и сотрудников должны быть целыми числами!")
+        }
+        if (document.getElementById("err").value === "-5") {
+            alert("Такого отдела не существует!")
         }
     }
 

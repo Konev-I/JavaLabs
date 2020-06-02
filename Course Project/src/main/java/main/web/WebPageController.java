@@ -334,6 +334,24 @@ public class WebPageController {
   @RequestParam(name="depId", required=false, defaultValue="") String depId,
   @RequestParam(name="empId", required=false, defaultValue="") String empId, Model model
   ) {
+    try{
+      Departments dep = restController.getDepartment(Integer.parseInt(depId)).getBody();
+      Employees emp = restController.getEmployee(Integer.parseInt(empId)).getBody();
+      if (emp == null)
+      {
+        model.addAttribute("err", -6);
+        return "depEmps";
+      }
+      if (dep == null)
+      {
+        model.addAttribute("err", -5);
+        return "depEmps";
+      }
+    }
+    catch (Exception e){
+      model.addAttribute("err", -2);
+      return "depEmps";
+    }
     try {
       Integer.parseInt(depId);
       Integer.parseInt(empId);
