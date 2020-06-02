@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All departments</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h2>Все отделы:</h2>
+<ul>
+    <th:block th:each="department : ${list}">
+        <li>
+        <div>
+            ID отдела:
+            <text th:text="${department.getId()}"></text>
+        </div>
+        <div>
+            Название отдела:
+            <text th:text="${department.getName()}"></text>
+        </div>
+            <p></p>
+        </li>
+    </th:block>
+
+    <input type="button" value="Назад" onclick="location.href='/departments/main/1'">
+</ul>
+</body>
+</html>

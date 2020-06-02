@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects</title>
+</head>
+<body>
+<input type="button" value="Назад" onclick="location.href='/'">
+<p>Выберите действие:</p>
+<div>
+    <input type="button" value="Показать все проекты" onclick="location.href='/projects/all'">
+    <input type="button" value="Удалить все проекты" onclick="deleteAll()">
+</div>
+<p>              Запросы проектов по ID              </p>
+<div>
+    <input type="text" id="id" placeholder="Введите ID"/>
+    <input type="button" value="Поиск" onclick="getId()">
+    <input type="button" value="Удаление" onclick="deleteById()">
+</div>
+<p>              Обновление информации о проекте (оставьте поле пустым чтобы оставить его прежним)(формат даты: YYYY/MM/DD)</p>
+<div>
+    <input type="text" id="updateId" placeholder="Введите ID"/>
+    <input type="text" id="updateName" placeholder="Новое название"/>
+    <input type="text" id="updateCost" placeholder="Новую стоимость"/>
+    <input type="text" id="updateDepId" placeholder="Новый ID отдела"/>
+    <input type="text" id="updateDateBeg" placeholder="Дата начала"/>
+    <input type="text" id="updateDateEnd" placeholder="Планируемая дата окончания"/>
+    <input type="text" id="updateDateEndReal" placeholder="Реальная дата окончания"/>
+    <input type="button" value="Обновить информацию" onclick="updateById()">
+</div>
+<p>              Добавление нового проекта (формат даты: YYYY/MM/DD)             </p>
+<div>
+    <input type="text" id="addName" placeholder="Новое название"/>
+    <input type="text" id="addCost" placeholder="Новую стоимость"/>
+    <input type="text" id="addDepId" placeholder="Новый ID отдела"/>
+    <input type="text" id="addDateBeg" placeholder="Дата начала"/>
+    <input type="text" id="addDateEnd" placeholder="Планируемая дата окончания"/>
+    <input type="text" id="addDateEndReal" placeholder="Реальная дата окончания"/>
+    <input type="button" value="Добавить проект" onclick="add()">
+</div>
+
+<input type="text" id="err" th:value="${err}" style="visibility:hidden;"/>
+</body>
+
+<script>
+    window.onload = init;
+
+    function init() {
+        if (document.getElementById("err").value === "0") {
+            alert("Успешно!");
+        }
+        if (document.getElementById("err").value === "-1") {
+            alert("Такого элемента не найдено.")
+        }
+        if (document.getElementById("err").value === "-2") {
+            alert("ID должен быть числом!")
+        }
+        if (document.getElementById("err").value === "-3") {
+            alert("Стоимость должена быть числом!")
+        }
+        if (document.getElementById("err").value === "-4") {
+            alert("Неправильный формат даты!")
+        }
+    }
+
+    function getId(){
+        let id = document.getElementById("id").value;
+        if (id === "")
+        {
+            alert("Введите id!");
+            return;
+        }
+        document.location.href = "/projects/" + id;
+    }
+
+    function deleteById(){
+        let id = document.getElementById("id").value;
+        if (id === "")
+        {
+            alert("Введите id!");
+            return;
+        }
+        document.location.href = "/projects/delete/"+id;
+    }
+
+    function deleteAll(){
+        document.location.href = "/projects/delete/";
+    }
+
+    function updateById(){
+        let id = document.getElementById("updateId").value;
+        let name = document.getElementById("updateName").value;
+        let cost = document.getElementById("updateCost").value;
+        let depId = document.getElementById("updateDepId").value;
+        let dateBeg = document.getElementById("updateDateBeg").value;
+        let dateEnd = document.getElementById("updateDateEnd").value;
+        let dateEndReal = document.getElementById("updateDateEndReal").value;
+        if (id === "")
+        {
+            alert("Введите id!");
+            return;
+        }
+
+        document.location.href = "http://localhost:8080/projects/update/"+id+"?name="+name+"&cost="+cost+"&depId="+depId+"&dateBeg="+dateBeg+"&dateEnd="+dateEnd+"&dateEndReal="+dateEndReal;
+    }
+
+    function add() {
+        let name = document.getElementById("addName").value;
+        let cost = document.getElementById("addCost").value;
+        let depId = document.getElementById("addDepId").value;
+        let dateBeg = document.getElementById("addDateBeg").value;
+        let dateEnd = document.getElementById("addDateEnd").value;
+        let dateEndReal = document.getElementById("addDateEndReal").value;
+        if (name === "" || cost === "" || depId === "" || dateBeg === "" || dateEnd === "" || dateEndReal === "")
+        {
+            alert("Ни одно из полей не может быть пустым!");
+            return;
+        }
+        document.location.href = "http://localhost:8080/projects/add?name="+name+"&cost="+cost+"&depId="+depId+"&dateBeg="+dateBeg+"&dateEnd="+dateEnd+"&dateEndReal="+dateEndReal;
+    }
+
+</script>
+</html>

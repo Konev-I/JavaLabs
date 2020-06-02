@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All employees</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<input type="button" value="Назад" onclick="location.href='/employees/main/1'">
+
+<h2>Все сотрудники:</h2>
+<ul>
+    <th:block th:each="employee : ${list}">
+        <li>
+            <div>
+                ID:
+                <text th:text="${employee.getId()}"></text>
+            </div>
+            <div>
+                Имя:
+                <text th:text="${employee.getFirstName()}"></text>
+            </div>
+            <div>
+                Фамилия:
+                <text th:text="${employee.getLastName()}"></text>
+            </div>
+            <div>
+                Отчество:
+                <text th:text="${employee.getPatherName()}"></text>
+            </div>
+            <div>
+                Должность:
+                <text th:text="${employee.getPosition()}"></text>
+            </div>
+            <div>
+                Оклад:
+                <text th:text="${employee.getSalary()}"></text>
+            </div>
+            <p></p>
+        </li>
+    </th:block>
+
+</ul>
+</body>
+</html>

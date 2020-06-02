@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees</title>
+</head>
+<body>
+<input type="button" value="Назад" onclick="location.href='/'">
+<p>Выберите действие:</p>
+<div>
+    <input type="button" value="Показать всех сотрудников" onclick="location.href='/employees/all'">
+    <input type="button" value="Удалить всех сотрудников" onclick="deleteAll()">
+</div>
+<p>              Запросы сотрудников по ID              </p>
+<div>
+    <input type="text" id="id" placeholder="Введите ID"/>
+    <input type="button" value="Поиск" onclick="getId()">
+    <input type="button" value="Удаление" onclick="deleteById()">
+</div>
+<p>              Обновление информации о сотруднике (оставьте поле пустым чтобы оставить его прежним)</p>
+<div>
+    <input type="text" id="updateId" placeholder="Введите ID"/>
+    <input type="text" id="updatefName" placeholder="Введите новое имя"/>
+    <input type="text" id="updatelName" placeholder="Введите новую фамилию"/>
+    <input type="text" id="updatepName" placeholder="Введите новое отчество"/>
+    <input type="text" id="updatePosition" placeholder="Введите новую должность"/>
+    <input type="text" id="updateSalary" placeholder="Введите новый оклад"/>
+    <input type="button" value="Обновить информацию" onclick="updateById()">
+</div>
+<p>              Добавление нового сотрудника              </p>
+<div>
+    <input type="text" id="addfName" placeholder="Введите новое имя"/>
+    <input type="text" id="addlName" placeholder="Введите новую фамилию"/>
+    <input type="text" id="addpName" placeholder="Введите новое отчество"/>
+    <input type="text" id="addPosition" placeholder="Введите новую должность"/>
+    <input type="text" id="addSalary" placeholder="Введите новый оклад"/>
+    <input type="button" value="Добавить сотрудника" onclick="add()">
+</div>
+
+<input type="text" id="err" th:value="${err}" style="visibility:hidden;"/>
+</body>
+
+<script>
+    window.onload = init;
+
+    function init() {
+        if (document.getElementById("err").value === "0") {
+            alert("Успешно!");
+        }
+        if (document.getElementById("err").value === "-1") {
+            alert("Такого элемента не найдено.")
+        }
+        if (document.getElementById("err").value === "-2") {
+            alert("ID должен быть числом!")
+        }
+        if (document.getElementById("err").value === "-3") {
+            alert("Оклад должен быть числом!")
+        }
+    }
+
+    function getId(){
+        let id = document.getElementById("id").value;
+        if (id === "")
+        {
+            alert("Введите id!");
+            return;
+        }
+        document.location.href = "/employees/" + id;
+    }
+
+    function deleteById(){
+        let id = document.getElementById("id").value;
+        if (id === "")
+        {
+            alert("Введите id!");
+            return;
+        }
+        document.location.href = "/employees/delete/"+id;
+    }
+
+    function deleteAll(){
+        document.location.href = "/employees/delete/";
+    }
+
+    function updateById(){
+        let id = document.getElementById("updateId").value;
+        let fName = document.getElementById("updatefName").value;
+        let lName = document.getElementById("updatelName").value;
+        let pName = document.getElementById("updatepName").value;
+        let pos = document.getElementById("updatePosition").value;
+        let sal = document.getElementById("updateSalary").value;
+        if (id === "")
+        {
+            alert("Введите id!");
+            return;
+        }
+
+        document.location.href = "http://localhost:8080/employees/update/"+id+"?fName="+fName+"&lName="+lName+"&pName="+pName+"&position="+pos+"&salary="+sal;
+    }
+
+    function add() {
+        let fName = document.getElementById("addfName").value;
+        let lName = document.getElementById("addlName").value;
+        let pName = document.getElementById("addpName").value;
+        let pos = document.getElementById("addPosition").value;
+        let sal = document.getElementById("addSalary").value;
+        if (fName === "" || lName === "" || pName === "" || pos === "" || sal === "")
+        {
+            alert("Ни одно из полей не может быть пустым!");
+            return;
+        }
+        document.location.href = "http://localhost:8080/employees/add?fName="+fName+"&lName="+lName+"&pName="+pName+"&position="+pos+"&salary="+sal;
+    }
+
+</script>
+</html>

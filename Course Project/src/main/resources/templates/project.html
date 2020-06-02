@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Project by ID</title>
+</head>
+<body>
+<input type="button" value="Назад" onclick="location.href='/projects/main/1'">
+<h2> Найденый проект: </h2>
+<div>
+    ID:
+    <text th:text="${project.getId()}"></text>
+</div>
+<div>
+    Название проекта:
+    <text th:text="${project.getName()}"></text>
+</div>
+<div>
+    Стоимость:
+    <text th:text="${project.getCost()}"></text>
+</div>
+<div>
+    Отдел:
+    <text th:text="${project.getDepId()}"></text>
+</div>
+<div>
+    Дата начала работы
+    <text th:text="${project.getDateBeg()}"></text>
+</div>
+<div>
+    Планируемая дата завершения:
+    <text th:text="${project.getDateEnd()}"></text>
+</div>
+<div>
+    Реальная дата завершения:
+    <text th:text="${project.getDateEndReal()}"></text>
+</div>
+
+</body>
+</html>

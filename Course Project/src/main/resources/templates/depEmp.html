@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Departments & employees by ID</title>
+</head>
+<body>
+<input type="button" value="Назад" onclick="location.href='/depEmps/main/1'">
+<h2> Найденая связь: </h2>
+<div>
+    ID:
+    <text th:text="${depEmp.getId()}"></text>
+</div>
+<div>
+    ID отдела:
+    <text th:text="${depEmp.getDepartmentId()}"></text>
+</div>
+<div>
+    ID сотрудника:
+    <text th:text="${depEmp.getEmployeeId()}"></text>
+</div>
+<p></p>
+
+</body>
+</html>
