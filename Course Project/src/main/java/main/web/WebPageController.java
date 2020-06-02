@@ -447,6 +447,18 @@ public class WebPageController {
       model.addAttribute("err", -2);
       return "projects";
     }
+    try{
+      Departments dep = restController.getDepartment(Integer.parseInt(depId)).getBody();
+      if (dep == null)
+      {
+        model.addAttribute("err", -5);
+        return "projects";
+      }
+    }
+    catch (Exception e){
+      model.addAttribute("err", -2);
+      return "projects";
+    }
     Projects oldProj = restController.getProject(Integer.parseInt(id)).getBody();
     if (oldProj == null){
       model.addAttribute("err", -1);
@@ -516,6 +528,18 @@ public class WebPageController {
     }
     catch (Exception exception){
       model.addAttribute("err", -3);
+      return "projects";
+    }
+    try{
+      Departments dep = restController.getDepartment(Integer.parseInt(depId)).getBody();
+      if (dep == null)
+      {
+        model.addAttribute("err", -5);
+        return "projects";
+      }
+    }
+    catch (Exception e){
+      model.addAttribute("err", -2);
       return "projects";
     }
     restController.addProject(name, cost, depId, dateBeg, dateEnd, dateEndReal);
